@@ -1,0 +1,64 @@
+.play{
+    background-color:white;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin: 20px;
+    font-size: 2rem;
+    text-align: center;
+    box-shadow: 4px 4px 15px 5px rgba(0,0,0,0.31);
+
+    .play-container{
+        padding: 40px;
+
+        .pokemons{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        
+            img{
+                width: 250px;
+                height: 200px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .play-controls{
+            display: flex;
+            justify-content: space-around;
+
+            button{
+                display: flex;
+                align-items: center;
+                background-color: #322e85;
+                border: solid 1px rgb(223, 223, 223);
+                color: white;
+                border-radius: 10px;
+                font-size: 2.5rem;
+                margin-top: 50px;
+                padding-left: 15px;
+                padding-right: 15px;
+
+                i{
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .play-effect{
+            background-image: url("../assets/img/pokebola.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            &:hover{
+                background-image: url("../assets/img/img-home.jpg");
+                transform: scale(1.1,1.1);
+                transition: 0.4s ease-in-out;
+            }
+        }
+
+    }
+}
+
