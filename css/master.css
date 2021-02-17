@@ -172,10 +172,43 @@ form .test .error-input {
   align-items: center;
   flex-wrap: wrap;
 }
-.play .play-container .pokemons img {
-  width: 250px;
+.play .play-container .pokemons .play-effect {
+  position: relative;
+}
+.play .play-container .pokemons .play-effect img {
+  width: 200px;
   height: 200px;
   margin-bottom: 30px;
+  clip-path: circle(50%);
+}
+.play .play-container .pokemons .play-effect:hover {
+  transform: scale(1.1, 1.1);
+  transition: 0.4s ease-in-out;
+  cursor: grab;
+}
+.play .play-container .pokemons .play-effect .play-container-pokemon {
+  position: relative;
+}
+.play .play-container .pokemons .play-effect .play-container-pokebola {
+  position: absolute;
+  top: 0;
+  animation: rotatePO 2s infinite;
+}
+@keyframes poke {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100px;
+  }
+}
+@keyframes rotatePO {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(179deg);
+  }
 }
 .play .play-container .play-controls {
   display: flex;
@@ -195,17 +228,6 @@ form .test .error-input {
 }
 .play .play-container .play-controls button i {
   margin-left: 20px;
-}
-.play .play-container .play-effect {
-  background-image: url("../assets/img/pokebola.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.play .play-container .play-effect:hover {
-  background-image: url("../assets/img/img-home.jpg");
-  transform: scale(1.1, 1.1);
-  transition: 0.4s ease-in-out;
 }
 
 /*# sourceMappingURL=master.css.map */
