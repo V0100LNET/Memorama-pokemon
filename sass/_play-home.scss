@@ -8,20 +8,30 @@
     text-align: center;
     box-shadow: 4px 4px 15px 5px rgba(0,0,0,0.31);
 
+    h1{
+        span{
+            font-weight: bold;
+            font-style: italic;
+        }
+    }
+
     .play-container{
         padding: 40px;
+
+        .pokemons > *{
+            margin: 10px;
+        }
 
         .pokemons{
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            align-content: stretch;
 
             .play-effect{
-                //pokoboal por defecto
                 position: relative;
-                
-                //pokemon por defecto
+
                 img{
                     width: 200px;
                     height: 200px;
@@ -30,31 +40,59 @@
                 }
 
                 &:hover{
-                    // background-image: url("../assets/img/img-home.jpg");
                     transform: scale(1.1,1.1);
                     transition: 0.4s ease-in-out;
                     cursor: grab;
                 }
 
                 .play-container-pokemon{
+                    overflow: hidden;
                     position: relative;
+                    clip-path: circle(5%);
+                    
+                    img{
+                        margin-bottom: 0;
+                    }
+                }
+
+                .show-pokemon{
+                    background-color: white;
+                    z-index: 999;
+                    animation-name: showImage;
+                    animation-duration: 1.5s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                    animation-direction: alternate-reverse;
+
+
+                    @keyframes showImage{
+                        0%{clip-path: circle(5%);}
+                        20%{clip-path: circle(10%);}
+                        40%{clip-path: circle(20%);}
+                        60%{clip-path: circle(30%);}
+                        80%{clip-path: circle(40%);}
+                        100%{clip-path: circle(48%);}
+                    }
                 }
 
                 .play-container-pokebola{
                     position: absolute;
                     top: 0;
-                    // animation: poke 2s infinite;
-                    animation: rotatePO 2s infinite;
+                }
 
-                    @keyframes poke {
-                        from {top: 0;}
-                        to {top: 100px;}
-                    }
-
-                    @keyframes rotatePO {
-                        from {transform: rotateY(0deg);}
-                        to {transform: rotateY(179deg);}
-                    }
+                .play-container-center{
+                    width: 30px;
+                    height: 30px;
+                    background-color: crimson;
+                    position: absolute;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    border: 1px solid black;
                 }
             }  
         }

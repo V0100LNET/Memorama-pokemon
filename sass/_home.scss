@@ -24,6 +24,7 @@ form{
         border: solid 1px rgba(0,0,0,0.2);
         width: 100%;
         color: rgb(136, 132, 132);
+        outline: none;
 
         &:focus{
             border: 1px solid #28a745;
@@ -52,7 +53,7 @@ form{
         .error{
             position: absolute;
             font-size: 0.9rem;
-            left: 64.7%;
+            right: 0;
             color: #dc3545;
             font-weight: bold;
             font-style: italic;

@@ -38,6 +38,7 @@ form input {
   border: solid 1px rgba(0, 0, 0, 0.2);
   width: 100%;
   color: #888484;
+  outline: none;
 }
 form input:focus {
   border: 1px solid #28a745;
@@ -61,7 +62,7 @@ form .test {
 form .test .error {
   position: absolute;
   font-size: 0.9rem;
-  left: 64.7%;
+  right: 0;
   color: #dc3545;
   font-weight: bold;
   font-style: italic;
@@ -163,14 +164,22 @@ form .test .error-input {
   text-align: center;
   box-shadow: 4px 4px 15px 5px rgba(0, 0, 0, 0.31);
 }
+.play h1 span {
+  font-weight: bold;
+  font-style: italic;
+}
 .play .play-container {
   padding: 40px;
+}
+.play .play-container .pokemons > * {
+  margin: 10px;
 }
 .play .play-container .pokemons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  align-content: stretch;
 }
 .play .play-container .pokemons .play-effect {
   position: relative;
@@ -187,28 +196,59 @@ form .test .error-input {
   cursor: grab;
 }
 .play .play-container .pokemons .play-effect .play-container-pokemon {
+  overflow: hidden;
   position: relative;
+  clip-path: circle(5%);
+}
+.play .play-container .pokemons .play-effect .play-container-pokemon img {
+  margin-bottom: 0;
+}
+.play .play-container .pokemons .play-effect .show-pokemon {
+  background-color: white;
+  z-index: 999;
+  animation-name: showImage;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+}
+@keyframes showImage {
+  0% {
+    clip-path: circle(5%);
+  }
+  20% {
+    clip-path: circle(10%);
+  }
+  40% {
+    clip-path: circle(20%);
+  }
+  60% {
+    clip-path: circle(30%);
+  }
+  80% {
+    clip-path: circle(40%);
+  }
+  100% {
+    clip-path: circle(48%);
+  }
 }
 .play .play-container .pokemons .play-effect .play-container-pokebola {
   position: absolute;
   top: 0;
-  animation: rotatePO 2s infinite;
 }
-@keyframes poke {
-  from {
-    top: 0;
-  }
-  to {
-    top: 100px;
-  }
-}
-@keyframes rotatePO {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(179deg);
-  }
+.play .play-container .pokemons .play-effect .play-container-center {
+  width: 30px;
+  height: 30px;
+  background-color: crimson;
+  position: absolute;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 1px solid black;
 }
 .play .play-container .play-controls {
   display: flex;
