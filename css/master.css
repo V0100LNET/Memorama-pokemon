@@ -207,10 +207,10 @@ form .test .error-input {
   background-color: white;
   z-index: 999;
   animation-name: showImage;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
+  animation-duration: 0.5s;
   animation-timing-function: linear;
-  animation-direction: alternate-reverse;
+  animation-direction: alternate;
+  clip-path: circle(46%);
 }
 @keyframes showImage {
   0% {
@@ -229,8 +229,12 @@ form .test .error-input {
     clip-path: circle(40%);
   }
   100% {
-    clip-path: circle(48%);
+    clip-path: circle(46%);
   }
+}
+.play .play-container .pokemons .play-effect .zoom-pokebola {
+  transform: scale(1.1, 1.1);
+  transition: 0.4s ease-in-out;
 }
 .play .play-container .pokemons .play-effect .play-container-pokebola {
   position: absolute;

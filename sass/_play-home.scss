@@ -59,11 +59,10 @@
                     background-color: white;
                     z-index: 999;
                     animation-name: showImage;
-                    animation-duration: 1.5s;
-                    animation-iteration-count: infinite;
+                    animation-duration: 0.5s;
+                    // animation-iteration-count: infinite;
                     animation-timing-function: linear;
-                    animation-direction: alternate-reverse;
-
+                    animation-direction: alternate;
 
                     @keyframes showImage{
                         0%{clip-path: circle(5%);}
@@ -71,8 +70,16 @@
                         40%{clip-path: circle(20%);}
                         60%{clip-path: circle(30%);}
                         80%{clip-path: circle(40%);}
-                        100%{clip-path: circle(48%);}
+                        100%{clip-path: circle(46%);}
                     }
+                    
+                    clip-path: circle(46%);
+                    
+                }
+
+                .zoom-pokebola{
+                    transform: scale(1.1,1.1);
+                    transition: 0.4s ease-in-out;
                 }
 
                 .play-container-pokebola{

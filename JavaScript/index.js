@@ -44,12 +44,14 @@ async function getPokemonApi(number_pokemon){
     let json = await response.json();
     
     $pokemons.innerHTML += `
-        <div class="play-effect">
-            <div class="play-container-pokemon show-pokemon"><img src="${json.sprites.front_default}" alt="${json.id}"></div>
+        <div class="play-effect toggle-animation">
+            <div class="play-container-pokemon"><img id="img_pokemon" src="${json.sprites.front_default}" alt="${json.id}" data-id="${json.id}"></div>
             <div class="play-container-pokebola"><img src="../assets/img/pokebola.png" alt=""></div>
             <div class="play-container-center"></div>
         </div>
     `
+    
+    setAnimationToDoClick();
 }
 
 
@@ -61,6 +63,25 @@ function setPokemonToDom(){
     for(numero_pokemon = 1; numero_pokemon<=8; numero_pokemon++){
         getPokemonApi(getRandomInt(100));
     }
+}
+
+function setAnimationToDoClick(){
+    const $toggle_animation = document.querySelectorAll(".toggle-animation");
+    const $img_pokemon = document.getElementById("img_pokemon");
+
+    $toggle_animation.forEach((container_pokemon) => {
+        const $pokemon = container_pokemon.querySelector(".play-container-pokemon");
+        const $pokemon_id = $img_pokemon.getAttribute("data-id");
+     
+        container_pokemon.addEventListener("click", (e) => {
+            $pokemon.classList.add("show-pokemon");
+            pokemonEqualsSamePokemon(parseInt($img_pokemon.getAttribute("data-id")));
+        });
+    });
+};
+
+function pokemonEqualsSamePokemon(id_pokemon){
+    console.log(id_pokemon);
 }
 
 AuthenticationLogin();
