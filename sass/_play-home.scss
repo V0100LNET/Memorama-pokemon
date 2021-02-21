@@ -77,6 +77,10 @@
                     
                 }
 
+                .hidden-pokemon{
+                    opacity: 0.5;
+                }
+
                 .zoom-pokebola{
                     transform: scale(1.1,1.1);
                     transition: 0.4s ease-in-out;
@@ -101,7 +105,7 @@
                     margin: auto;
                     border: 1px solid black;
                 }
-            }  
+            }
         }
 
              
@@ -130,4 +134,3 @@
 
     }
 }
-

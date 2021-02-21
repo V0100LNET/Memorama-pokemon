@@ -42,15 +42,17 @@ async function getPokemonApi(number_pokemon){
     let url = `https://pokeapi.co/api/v2/pokemon/${number_pokemon}`;
     let response = await fetch(url);
     let json = await response.json();
-    
+    let img_pokemon = json.sprites.front_default;
+    let id_pokemon = json.id;
+
     $pokemons.innerHTML += `
-        <div class="play-effect toggle-animation">
-            <div class="play-container-pokemon"><img id="img_pokemon" src="${json.sprites.front_default}" alt="${json.id}" data-id="${json.id}"></div>
+        <div class="play-effect toggle-animation hidden-pokemon">
+            <div class="play-container-pokemon"><img id="img_pokemon" src="${img_pokemon}" alt="" data-id="${id_pokemon}"></div>
             <div class="play-container-pokebola"><img src="../assets/img/pokebola.png" alt=""></div>
             <div class="play-container-center"></div>
         </div>
     `
-    
+    clonePokemons(img_pokemon, id_pokemon);
     setAnimationToDoClick();
 }
 
@@ -59,30 +61,59 @@ function getRandomInt(max){
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+function clonePokemons(img_pokemon, id_pokemon){
+    console.log(img_pokemon,id_pokemon);
+    let $pokemons = document.getElementById("pokemons");
+    
+    $pokemons.innerHTML += `
+        <div class="play-effect toggle-animation">
+            <div class="play-container-pokemon"><img id="img_pokemon" src="${img_pokemon}" alt="" data-id="${id_pokemon}"></div>
+            <div class="play-container-pokebola"><img src="../assets/img/pokebola.png" alt=""></div>
+            <div class="play-container-center"></div>
+        </div>
+    `
+}
+
 function setPokemonToDom(){
-    for(numero_pokemon = 1; numero_pokemon<=8; numero_pokemon++){
+    const number_of_pokemons = 10;
+
+    for(numero_pokemon = 1; numero_pokemon<=number_of_pokemons; numero_pokemon++){
         getPokemonApi(getRandomInt(100));
     }
 }
 
 function setAnimationToDoClick(){
     const $toggle_animation = document.querySelectorAll(".toggle-animation");
-    const $img_pokemon = document.getElementById("img_pokemon");
 
     $toggle_animation.forEach((container_pokemon) => {
         const $pokemon = container_pokemon.querySelector(".play-container-pokemon");
-        const $pokemon_id = $img_pokemon.getAttribute("data-id");
-     
+        const  $pokemon_id = container_pokemon.querySelector(".play-container-pokemon > img").getAttribute("data-id");
+
         container_pokemon.addEventListener("click", (e) => {
             $pokemon.classList.add("show-pokemon");
-            pokemonEqualsSamePokemon(parseInt($img_pokemon.getAttribute("data-id")));
+            comparePokemonId(parseInt($pokemon_id));
         });
     });
 };
 
-function pokemonEqualsSamePokemon(id_pokemon){
-    console.log(id_pokemon);
+function comparePokemonId($pokemon_id){
+    if($pokemon_id === parseInt(localStorage.getItem("pokemon_id"))){
+        disablePokemon();
+    }
+    localStorage.setItem("pokemon_id", $pokemon_id);
 }
+
+function disablePokemon() {
+    const $pokemon = document.querySelector(".play-container-pokebola");
+    const $img_pokemon = document.querySelector(".play-container-pokemon > img");
+    $pokemon.classList.add("hidden-pokemon");
+    $img_pokemon.classList.add("hidden-pokemon");
+}
+
+function enablePokemon(){
+
+}
+
 
 AuthenticationLogin();
 document.addEventListener('DOMContentLoaded', function(){

@@ -232,6 +232,9 @@ form .test .error-input {
     clip-path: circle(46%);
   }
 }
+.play .play-container .pokemons .play-effect .hidden-pokemon {
+  opacity: 0.5;
+}
 .play .play-container .pokemons .play-effect .zoom-pokebola {
   transform: scale(1.1, 1.1);
   transition: 0.4s ease-in-out;
