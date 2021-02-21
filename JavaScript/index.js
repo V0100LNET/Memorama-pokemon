@@ -26,7 +26,7 @@ function AuthenticationLogin(){
 
             setTimeout(() => {
                 $set_loader.classList.add("d-none");
-                location.replace("http://127.0.0.1:5500/pages/Play.html");
+                location.replace("https://v0100lnet.github.io/Memorama-pokemon/pages/Play.html");
             },2000);
         }
     });
