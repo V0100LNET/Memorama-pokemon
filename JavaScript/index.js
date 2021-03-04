@@ -93,24 +93,40 @@ function setAnimationToDoClick(){
 
         container_pokemon.addEventListener("click", (e) => {
             $pokemon.classList.add("show-pokemon");
-            comparePokemonId(parseInt($pokemon_id));
+            
+            if(!localStorage.getItem("pokemon_id1")){
+                localStorage.setItem("pokemon_id1", $pokemon_id);
+                console.log("click animation");
+            }
+            else{
+                localStorage.setItem("pokemon_id2", $pokemon_id);
+                console.log("else del click")
+                comparePokemonId(parseInt(localStorage.getItem("pokemon_id1")), parseInt(localStorage.getItem("pokemon_id2")));
+            }
         });
     });
 };
 
-function comparePokemonId($pokemon_id){
-    if($pokemon_id === parseInt(localStorage.getItem("pokemon_id"))){
-        disablePokemon($pokemon_id);
+function comparePokemonId($pokemon_id1, $pokemon_id2){
+    //los parametros qeu reciben ya estan parseados
+    if($pokemon_id1 === $pokemon_id2){
+        setTimeout(() => {
+            disablePokemonWin($pokemon_id1, $pokemon_id2);
+            localStorage.clear();
+        },1000)
     }
     else{
-        console.log("No son iguales");
+        setTimeout(() => {
+            enablePokemonOver($pokemon_id1, $pokemon_id2);
+            localStorage.clear();
+        },1000)
     }
-    localStorage.setItem("pokemon_id", $pokemon_id);
 }
 
-function modalWhenYouWin(){}
+function modalWhenYouWin(){};
+function modalWhenYouOver(){};
 
-function disablePokemon(pokemon_id) {
+function disablePokemonWin($pokemon_id1, $pokemon_id2) {
     const $toggle_animation = document.querySelectorAll(".toggle-animation");
     const $pokemon = document.querySelector(".play-container-pokebola");
     const $img_pokemon = document.querySelector(".play-container-pokemon > img");
@@ -122,7 +138,7 @@ function disablePokemon(pokemon_id) {
         let container_pokemon = pokemon.querySelector(".play-container-pokemon");
     
         // console.log("data-pokemon: " + get_data_id_pokemon, "local: " + localStorage.getItem("pokemon_id"));
-        if(parseInt(get_data_id_pokemon) === parseInt(localStorage.getItem("pokemon_id"))){
+        if(parseInt(get_data_id_pokemon) === $pokemon_id1 || parseInt(get_data_id_pokemon) === $pokemon_id2){
             modalWhenYouWin();
             img_pokebola.classList.add("hidden-pokemon");
             img_pokemon.classList.add("hidden-pokemon"); 
@@ -133,8 +149,17 @@ function disablePokemon(pokemon_id) {
     $img_pokemon.classList.add("hidden-pokemon");
 }
 
-function enablePokemon(){
+function enablePokemonOver($pokemon_id1, $pokemon_id2){
+    const $toggle_animation = document.querySelectorAll(".toggle-animation");
 
+    $toggle_animation.forEach((container_pokemon) => {
+        const $pokemon = container_pokemon.querySelector(".play-container-pokemon");
+        const  $pokemon_id = container_pokemon.querySelector(".play-container-pokemon > img").getAttribute("data-id");
+
+        if($pokemon_id1 === parseInt($pokemon_id) || $pokemon_id2 === parseInt($pokemon_id)){
+            $pokemon.classList.remove("show-pokemon"); 
+        }
+    });
 }
 
 AuthenticationLogin();
