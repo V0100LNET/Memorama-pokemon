@@ -92,7 +92,7 @@ function setAnimationToDoClick(){
         const  $pokemon_id = container_pokemon.querySelector(".play-container-pokemon > img").getAttribute("data-id");
 
         container_pokemon.addEventListener("click", (e) => {
-            $pokemon.classList.add("show-pokemon");
+            $pokemon.classList.toggle("show-pokemon");
             
             if(!localStorage.getItem("pokemon_id1")){
                 localStorage.setItem("pokemon_id1", $pokemon_id);
